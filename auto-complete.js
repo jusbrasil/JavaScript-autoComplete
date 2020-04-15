@@ -137,6 +137,14 @@ var autoComplete = (function(){
                 }
             }, that.sc);
 
+            live('input-group-icon', 'mousedown', function(e){
+                if (hasClass(this, 'icon icon-magnify')) { // else outside click
+                    var v = that.value;
+                    o.onSelect(e, that.value, that);
+                    that.sc.style.display = 'none';
+                }
+            }, that.sc);
+
             that.blurHandler = function(){
                 try { var over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch(e){ var over_sb = 0; }
                 if (!over_sb) {
@@ -187,6 +195,9 @@ var autoComplete = (function(){
                 else if (key == 13 || key == 9) {
                     var sel = that.sc.querySelector('.autocomplete-suggestion.selected');
                     if (sel && that.sc.style.display != 'none') { o.onSelect(e, sel.getAttribute('data-val'), sel); setTimeout(function(){ that.sc.style.display = 'none'; }, 20); }
+                    else {
+                        o.onSelect(e, that.value, that); setTimeout(function(){ that.sc.style.display = 'none'; }, 20); 
+                    }
                 }
             };
             addEvent(that, 'keydown', that.keydownHandler);
