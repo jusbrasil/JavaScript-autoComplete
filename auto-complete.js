@@ -137,7 +137,7 @@ var autoComplete = (function(){
                 }
             }, that.sc);
 
-            live('input-group-icon', 'mousedown', function(e){
+            live('input-group-icon', 'onclick', function(e){
                 o.onSelect(e, that.value, that);
                 that.sc.style.display = 'none';
             }, that.sc);
