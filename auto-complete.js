@@ -138,11 +138,8 @@ var autoComplete = (function(){
             }, that.sc);
 
             live('input-group-icon', 'mousedown', function(e){
-                if (hasClass(this, 'icon icon-magnify')) { // else outside click
-                    var v = that.value;
-                    o.onSelect(e, that.value, that);
-                    that.sc.style.display = 'none';
-                }
+                o.onSelect(e, that.value, that);
+                that.sc.style.display = 'none';
             }, that.sc);
 
             that.blurHandler = function(){
