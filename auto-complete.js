@@ -73,12 +73,12 @@
                     Exemplo: Direitos E Humanos">
                     E
                 </span>
-                <span style="font-size: 10px" type="button" data-container="body" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right"
+                <span style="font-size: 10px" type="button" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right"
                     data-tooltip ="Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas. 
                     É possível utilizar parênteses para agrupar frases.Exemplo: (Dano moral) OU (Recurso Especial)" >
                     OU
                 </span>
-                <span style="font-size: 12px" type="button" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="top-left"
+                <span style="font-size: 12px" type="button" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right"
                     data-tooltip ="Nenhum dos resultados conterão o(s) termo(s)excludentes, indicados após o NÃO.Exemplo: (dano moral) NÃO material" >
                     Não Incluir
                 </span>
