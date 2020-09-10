@@ -62,34 +62,22 @@
             });
         }
 
-
         function createTooltipChip(tooltip, text) {
-                 
-       return (
-        '<span style="font-size: 10px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Identifique as palavras ou termos que, obrigatoriamente, estejam na sua pesquisa.Exemplo: Direitos E Humanos"`+ '">'+
-          text + `E`+
-          '</span>'+
-        '<span style="font-size: 10px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas.É possível utilizar parênteses para agrupar frases.Exemplo: (Dano moral) OU (Recurso Especial)"`+'">'+
-          text + `OU`+ 
-          '</span>' +
-          '<span style="font-size: 12px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Nenhum dos resultados conterão o(s) termo(s)excludentes, indicados após o NÃO.Exemplo: (dano moral) NÃO material"`+ '">'+
-          text + `Não Incluir`+
-          '</span>' +
-          '<span style="font-size: 12px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Os resultados conterão os termos na ordem exata e com a exata grafia indicada.Exemplo: princípio da presunção de inocência"`+ '">'+
-          text + `Exatamente` +
-          '</span>'
-
-        );
+            return (
+              '<span class="autocomplete-chip chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
+              tooltip +
+              '">' +
+              text +
+              '</span>'
+            );
        }
 
        var booleanTooltips = (
-          '<div style="margin: 0.4em" class="row">' +
-          createTooltipChip('foo', 'bar') +
-          createTooltipChip('baz', 'qux') +
+          '<div class="row">' +
+          createTooltipChip('Identifique as palavras ou termos que, obrigatoriamente, estejam na sua pesquisa. Exemplo: Direitos E Humanos', 'E') +
+          createTooltipChip('Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas. É possível utilizar parênteses para agrupar frases. Exemplo: (Dano moral) OU (Recurso Especial)', 'OU') +
+          createTooltipChip('Nenhum dos resultados conterão o(s) termo(s) excludentes, indicados após o NÃO. Exemplo: (dano moral) NÃO material', 'Não Incluir') +
+          createTooltipChip('Os resultados conterão os termos na ordem exata e com a exata grafia indicada. Exemplo: princípio da presunção de inocência', 'Exatamente') +
           '</div>'
         );
 
@@ -113,26 +101,34 @@
             var left = pos.left + 1;
             var top = pos.top + 1;
             var clonedNode = this.cloneNode(true);
-            clonedNode.style +=
-              ';color:transparent;box-shadow:none;z-index:10000;position:absolute;left:' + left + 'px;top:' + top + 'px';
-            clonedNode.addEventListener('mouseout', function () {
+            clonedNode.style =
+              'color:transparent;box-shadow:none;z-index:10000;position:absolute;left:' + left + 'px;top:' + top + 'px';
+            addEvent(clonedNode, 'mouseout', function () {
               this.parentElement.removeChild(this);
             });
             document.body.appendChild(clonedNode);
         }
-               
-        function footerBooleanOperators() { 
-            ' <hr style="margin: 0.4em">' + 
-            '<div style="margin-left: 0.6em">' + 
-            '<button style="font-size: 10px" class="btn btn--flat btn--blue autocomplete-boolean-button">' + text + "DICAS PARA ESPECIFICAR SUA BUSCA"+
-            '</button>' + '</div>'
-    }
-        var buttons = document.getElementsByClassName('autocomplete-boolean-button');
-            for (var i = 0; i < buttons.length; i++) {
-        var button = buttons[i];
-            button.addEventListener('click',booleanTooltips);
-    }
-   
+
+        function replaceButtonWithTooltips() {
+            var parentElement = this.parentElement;
+            if (parentElement) {
+                parentElement.innerHTML = booleanTooltips;
+                var chips = document.getElementsByClassName('autocomplete-chip');
+                for (var i = 0; i < chips.length; i++) {
+                    var chip = chips[i];
+                    addEvent(chip, 'mouseenter', createOverElemTooltip);
+                }
+            }
+        }
+
+        var footerBooleanOperators = (
+          '<hr>' +
+          '<div>' +
+          '<button class="btn btn--flat btn--sm btn--blue autocomplete-boolean-button">' +
+          'DICAS PARA ESPECIFICAR SUA BUSCA' +
+          '</button>' +
+          '</div>'
+        );
 
         var o = {
             selector: 0,
@@ -241,6 +237,8 @@
                 that.cache = removeSuggestionFromCache(that.cache, rawData[index]);
                 removeQueryFromLocalStorage(o.queryHistoryStorageName, rawData[index]);
             }, that.sc);
+
+            live('autocomplete-boolean-button', 'click', replaceButtonWithTooltips);
 
             that.blurHandler = function () {
                 try { var over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch (e) { var over_sb = 0; }

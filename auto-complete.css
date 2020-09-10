@@ -8,10 +8,9 @@
 .autocomplete-suggestion b { font-weight: normal; color: #1f8dd6; }
 .autocomplete-suggestion.selected { background: #f0f0f0; }
 
-.autocomplete-chip
- {
+.autocomplete-chip {
     border: 1px solid transparent;
 }
-.autocomplete-chip {
-    border: 1px solid black;
+.autocomplete-chip:hover {
+    border-color: black;
 }
