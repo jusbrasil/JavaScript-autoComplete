@@ -62,8 +62,8 @@
             });
         }
 
-
         function createTooltipChip(tooltip, text) {
+<<<<<<< HEAD
                  
        return (
         '<span style="font-size: 10px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
@@ -77,6 +77,15 @@
 
         );
         
+=======
+            return (
+              '<span class="autocomplete-chip chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
+              tooltip +
+              '">' +
+              text +
+              '</span>'
+            );
+>>>>>>> 6a82ee55cb3fb3ee15ed120c20e75f795a9e3172
        }
 
        var buttons = document.getElementsByClassName('autocomplete-boolean-button');
@@ -88,9 +97,11 @@
        
 
        var booleanTooltips = (
-          '<div style="margin: 0.4em" class="row">' +
-          createTooltipChip('foo', 'bar') +
-          createTooltipChip('baz', 'qux') +
+          '<div class="row">' +
+          createTooltipChip('Identifique as palavras ou termos que, obrigatoriamente, estejam na sua pesquisa. Exemplo: Direitos E Humanos', 'E') +
+          createTooltipChip('Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas. É possível utilizar parênteses para agrupar frases. Exemplo: (Dano moral) OU (Recurso Especial)', 'OU') +
+          createTooltipChip('Nenhum dos resultados conterão o(s) termo(s) excludentes, indicados após o NÃO. Exemplo: (dano moral) NÃO material', 'Não Incluir') +
+          createTooltipChip('Os resultados conterão os termos na ordem exata e com a exata grafia indicada. Exemplo: princípio da presunção de inocência', 'Exatamente') +
           '</div>'
         );
 
@@ -114,13 +125,14 @@
             var left = pos.left + 1;
             var top = pos.top + 1;
             var clonedNode = this.cloneNode(true);
-            clonedNode.style +=
-              ';color:transparent;box-shadow:none;z-index:10000;position:absolute;left:' + left + 'px;top:' + top + 'px';
-            clonedNode.addEventListener('mouseout', function () {
+            clonedNode.style =
+              'color:transparent;box-shadow:none;z-index:10000;position:absolute;left:' + left + 'px;top:' + top + 'px';
+            addEvent(clonedNode, 'mouseout', function () {
               this.parentElement.removeChild(this);
             });
             document.body.appendChild(clonedNode);
         }
+<<<<<<< HEAD
                
         function footerBooleanOperators() { 
             return(
@@ -132,6 +144,29 @@
            
     }
         
+=======
+
+        function replaceButtonWithTooltips() {
+            var parentElement = this.parentElement;
+            if (parentElement) {
+                parentElement.innerHTML = booleanTooltips;
+                var chips = document.getElementsByClassName('autocomplete-chip');
+                for (var i = 0; i < chips.length; i++) {
+                    var chip = chips[i];
+                    addEvent(chip, 'mouseenter', createOverElemTooltip);
+                }
+            }
+        }
+
+        var footerBooleanOperators = (
+          '<hr>' +
+          '<div>' +
+          '<button class="btn btn--flat btn--sm btn--blue autocomplete-boolean-button">' +
+          'DICAS PARA ESPECIFICAR SUA BUSCA' +
+          '</button>' +
+          '</div>'
+        );
+>>>>>>> 6a82ee55cb3fb3ee15ed120c20e75f795a9e3172
 
         var o = {
             selector: 0,
@@ -152,7 +187,8 @@
             queryHistoryStorageName: null,
             formSelector: null,
             buildTerm: function (term) { return term },
-            target: null
+            target: null,
+            enableFooterBooleanOperators: false
         };
         for (var k in options) { if (options.hasOwnProperty(k)) o[k] = options[k]; }
 
@@ -241,6 +277,8 @@
                 removeQueryFromLocalStorage(o.queryHistoryStorageName, rawData[index]);
             }, that.sc);
 
+            live('autocomplete-boolean-button', 'click', replaceButtonWithTooltips);
+
             that.blurHandler = function () {
                 try { var over_sb = document.querySelector('.autocomplete-suggestions:hover'); } catch (e) { var over_sb = 0; }
                 if (!over_sb) {
@@ -267,7 +305,7 @@
                 if (data.length) {
                     var s = '';
                     for (var i = 0; i < data.length; i++) s += o.renderItem(data[i], val, i);
-                    that.sc.innerHTML = s + footerBooleanOperators;
+                    that.sc.innerHTML = s + (o.enableFooterBooleanOperators ? footerBooleanOperators : '');
                     that.updateSC(0);
                 }
                 else
