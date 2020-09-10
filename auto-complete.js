@@ -68,23 +68,24 @@
        return (
         '<span style="font-size: 10px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
           tooltip + `"Identifique as palavras ou termos que, obrigatoriamente, estejam na sua pesquisa.Exemplo: Direitos E Humanos"`+ '">'+
-          text + `E`+
-          '</span>'+
-        '<span style="font-size: 10px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas.É possível utilizar parênteses para agrupar frases.Exemplo: (Dano moral) OU (Recurso Especial)"`+'">'+
-          text + `OU`+ 
-          '</span>' +
-          '<span style="font-size: 12px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Nenhum dos resultados conterão o(s) termo(s)excludentes, indicados após o NÃO.Exemplo: (dano moral) NÃO material"`+ '">'+
-          text + `Não Incluir`+
-          '</span>' +
-          '<span style="font-size: 12px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Os resultados conterão os termos na ordem exata e com a exata grafia indicada.Exemplo: princípio da presunção de inocência"`+ '">'+
+          text + `E`+ tooltip + `"Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas.É possível utilizar parênteses para agrupar frases.Exemplo: (Dano moral) OU (Recurso Especial)"`+'">'+
+          text + `OU`+ tooltip + `"Nenhum dos resultados conterão o(s) termo(s)excludentes, indicados após o NÃO.Exemplo: (dano moral) NÃO material"`+ '">'+
+          text + `Não Incluir`+ tooltip + `"Os resultados conterão os termos na ordem exata e com a exata grafia indicada.Exemplo: princípio da presunção de inocência"`+ '">'+
           text + `Exatamente` +
           '</span>'
+ 
 
         );
+        
        }
+
+       var buttons = document.getElementsByClassName('autocomplete-boolean-button');
+            for (var i = 0; i < buttons.length; i++) {
+        var button = buttons[i];
+            button.addEventListener('click',booleanTooltips);
+    }
+   
+       
 
        var booleanTooltips = (
           '<div style="margin: 0.4em" class="row">' +
@@ -122,17 +123,15 @@
         }
                
         function footerBooleanOperators() { 
-            ' <hr style="margin: 0.4em">' + 
+            return(
+                ' <hr style="margin: 0.4em">' + 
             '<div style="margin-left: 0.6em">' + 
             '<button style="font-size: 10px" class="btn btn--flat btn--blue autocomplete-boolean-button">' + text + "DICAS PARA ESPECIFICAR SUA BUSCA"+
             '</button>' + '</div>'
+            );
+           
     }
-        var buttons = document.getElementsByClassName('autocomplete-boolean-button');
-            for (var i = 0; i < buttons.length; i++) {
-        var button = buttons[i];
-            button.addEventListener('click',booleanTooltips);
-    }
-   
+        
 
         var o = {
             selector: 0,
