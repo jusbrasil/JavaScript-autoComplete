@@ -149,7 +149,8 @@
             queryHistoryStorageName: null,
             formSelector: null,
             buildTerm: function (term) { return term },
-            target: null
+            target: null,
+            enableFooterBooleanOperators: false
         };
         for (var k in options) { if (options.hasOwnProperty(k)) o[k] = options[k]; }
 
@@ -266,7 +267,7 @@
                 if (data.length) {
                     var s = '';
                     for (var i = 0; i < data.length; i++) s += o.renderItem(data[i], val, i);
-                    that.sc.innerHTML = s + footerBooleanOperators;
+                    that.sc.innerHTML = s + (o.enableFooterBooleanOperators ? footerBooleanOperators : '');
                     that.updateSC(0);
                 }
                 else
