@@ -64,6 +64,7 @@
 
 
         function createTooltipChip(tooltip, text) {
+<<<<<<< HEAD
             return (
               '<span class="autocomplete-chip chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
               tooltip +
