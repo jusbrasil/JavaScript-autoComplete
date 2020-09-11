@@ -62,22 +62,8 @@
             });
         }
 
-        function createTooltipChip(tooltip, text) {
-<<<<<<< HEAD
-                 
-       return (
-        '<span style="font-size: 10px" class="chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
-          tooltip + `"Identifique as palavras ou termos que, obrigatoriamente, estejam na sua pesquisa.Exemplo: Direitos E Humanos"`+ '">'+
-          text + `E`+ tooltip + `"Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas.É possível utilizar parênteses para agrupar frases.Exemplo: (Dano moral) OU (Recurso Especial)"`+'">'+
-          text + `OU`+ tooltip + `"Nenhum dos resultados conterão o(s) termo(s)excludentes, indicados após o NÃO.Exemplo: (dano moral) NÃO material"`+ '">'+
-          text + `Não Incluir`+ tooltip + `"Os resultados conterão os termos na ordem exata e com a exata grafia indicada.Exemplo: princípio da presunção de inocência"`+ '">'+
-          text + `Exatamente` +
-          '</span>'
- 
 
-        );
-        
-=======
+        function createTooltipChip(tooltip, text) {
             return (
               '<span class="autocomplete-chip chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
               tooltip +
@@ -85,21 +71,12 @@
               text +
               '</span>'
             );
->>>>>>> 6a82ee55cb3fb3ee15ed120c20e75f795a9e3172
        }
-
-       var buttons = document.getElementsByClassName('autocomplete-boolean-button');
-            for (var i = 0; i < buttons.length; i++) {
-        var button = buttons[i];
-            button.addEventListener('click',booleanTooltips);
-    }
-   
-       
 
        var booleanTooltips = (
           '<div class="row">' +
-          createTooltipChip('Identifique as palavras ou termos que, obrigatoriamente, estejam na sua pesquisa. Exemplo: Direitos E Humanos', 'E') +
-          createTooltipChip('Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas. É possível utilizar parênteses para agrupar frases. Exemplo: (Dano moral) OU (Recurso Especial)', 'OU') +
+          createTooltipChip('Identifique as palavras ou termos que, obrigatoriamente,estejam na sua pesquisa. Exemplo: Direitos E Humanos', 'E') +
+          createTooltipChip('Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas. brÉ possível utilizar parênteses para agrupar frases. Exemplo: (Dano moral) OU (Recurso Especial)', 'OU') +
           createTooltipChip('Nenhum dos resultados conterão o(s) termo(s) excludentes, indicados após o NÃO. Exemplo: (dano moral) NÃO material', 'Não Incluir') +
           createTooltipChip('Os resultados conterão os termos na ordem exata e com a exata grafia indicada. Exemplo: princípio da presunção de inocência', 'Exatamente') +
           '</div>'
@@ -126,32 +103,21 @@
             var top = pos.top + 1;
             var clonedNode = this.cloneNode(true);
             clonedNode.style =
-              'color:transparent;box-shadow:none;z-index:10000;position:absolute;left:' + left + 'px;top:' + top + 'px';
+            'color:transparent;box-shadow:none;z-index:10000;position:absolute;left:' + left + 'px;top:' + top + 'px';
+            
             addEvent(clonedNode, 'mouseout', function () {
-              this.parentElement.removeChild(this);
+              
             });
             document.body.appendChild(clonedNode);
         }
-<<<<<<< HEAD
-               
-        function footerBooleanOperators() { 
-            return(
-                ' <hr style="margin: 0.4em">' + 
-            '<div style="margin-left: 0.6em">' + 
-            '<button style="font-size: 10px" class="btn btn--flat btn--blue autocomplete-boolean-button">' + text + "DICAS PARA ESPECIFICAR SUA BUSCA"+
-            '</button>' + '</div>'
-            );
-           
-    }
-        
-=======
 
         function replaceButtonWithTooltips() {
             var parentElement = this.parentElement;
             if (parentElement) {
                 parentElement.innerHTML = booleanTooltips;
-                var chips = document.getElementsByClassName('autocomplete-chip');
-                for (var i = 0; i < chips.length; i++) {
+
+            var chips = document.getElementsByClassName('autocomplete-chip');
+            for (var i = 0; i < chips.length; i++) {
                     var chip = chips[i];
                     addEvent(chip, 'mouseenter', createOverElemTooltip);
                 }
@@ -159,14 +125,13 @@
         }
 
         var footerBooleanOperators = (
-          '<hr>' +
+          '<hr style= "width: 575px">' +
           '<div>' +
           '<button class="btn btn--flat btn--sm btn--blue autocomplete-boolean-button">' +
           'DICAS PARA ESPECIFICAR SUA BUSCA' +
           '</button>' +
           '</div>'
         );
->>>>>>> 6a82ee55cb3fb3ee15ed120c20e75f795a9e3172
 
         var o = {
             selector: 0,

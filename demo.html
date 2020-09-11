@@ -274,6 +274,7 @@ new autoComplete({
         var demo1 = new autoComplete({
             selector: '#hero-demo',
             minChars: 1,
+            enableFooterBooleanOperators: true,
             source: function(term, suggest){
                 term = term.toLowerCase();
                 var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];

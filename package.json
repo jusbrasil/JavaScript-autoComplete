@@ -25,7 +25,8 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "utils/*.{js,jsx}","./auto-complete.js"
+      "utils/*.{js,jsx}",
+      "./auto-complete.js"
     ],
     "testRegex": "tests/.*",
     "testPathIgnorePatterns": [

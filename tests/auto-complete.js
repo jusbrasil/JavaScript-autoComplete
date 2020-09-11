@@ -359,4 +359,15 @@ describe('Autocomplete Instance', function () {
         // THEN
         expect(queries).toBe(null);
     });
+    
 })
+
+     function renderText(tooltip, text) {
+
+    return '<span class="autocomplete-chip chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' + tooltip +
+    '">' +
+    text +
+    '</span>';
+}
+
+
