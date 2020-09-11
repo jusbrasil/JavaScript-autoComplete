@@ -364,7 +364,7 @@ describe('Autocomplete Instance', function () {
 
      function renderText(tooltip, text) {
 
-    return '<span class="autocomplete-chip chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' + tooltip +
+    return '<span class="autocomplete-chip chip chip--outline chip--sm tooltip-lg" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' + tooltip +
     '">' +
     text +
     '</span>';

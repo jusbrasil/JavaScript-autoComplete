@@ -63,10 +63,10 @@
         }
 
 
-        function createTooltipChip(tooltip, text) {
-<<<<<<< HEAD
+    function createTooltipChip(tooltip, text) {
+
             return (
-              '<span class="autocomplete-chip chip chip--outline chip--sm" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
+              '<span class="autocomplete-chip chip chip--outline chip--sm tooltip-lg" data-toggle="tooltip" data-placement="bottom-right" data-tooltip ="' +
               tooltip +
               '">' +
               text +
@@ -77,7 +77,7 @@
        var booleanTooltips = (
           '<div class="row">' +
           createTooltipChip('Identifique as palavras ou termos que, obrigatoriamente,estejam na sua pesquisa. Exemplo: Direitos E Humanos', 'E') +
-          createTooltipChip('Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas. brÉ possível utilizar parênteses para agrupar frases. Exemplo: (Dano moral) OU (Recurso Especial)', 'OU') +
+          createTooltipChip('Identifique palavras ou termos para obter resultados com pelo menos uma das palavras-chave especificadas. É possível utilizar parênteses para agrupar frases. Exemplo: (Dano moral) OU (Recurso Especial)', 'OU') +
           createTooltipChip('Nenhum dos resultados conterão o(s) termo(s) excludentes, indicados após o NÃO. Exemplo: (dano moral) NÃO material', 'Não Incluir') +
           createTooltipChip('Os resultados conterão os termos na ordem exata e com a exata grafia indicada. Exemplo: princípio da presunção de inocência', 'Exatamente') +
           '</div>'
