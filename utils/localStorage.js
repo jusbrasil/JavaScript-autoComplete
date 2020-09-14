@@ -7,7 +7,7 @@
 }(typeof self !== 'undefined' ? self : this, function (_string) {
     var escapeSpecialChars = _string.escapeSpecialChars,
         removeBoldElement = _string.removeBoldElement;
-    var MAX_LOCAL_QUERIES = 5;
+    var MAX_LOCAL_QUERIES = 12;
 
     function saveSuggestionQueries(storageName, queries) {
         queries = removeBoldElement(JSON.stringify(queries));
