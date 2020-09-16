@@ -4,8 +4,8 @@ var _localStorage = require('../../utils/localStorage'),
     getQueriesFromLocalStorage = _localStorage.getQueriesFromLocalStorage,
     getSuggestionQueries = _localStorage.getSuggestionQueries,
     saveSuggestionQueries = _localStorage.saveSuggestionQueries,
-    removeDuplicatedQueries = _localStorage.removeDuplicatedQueries,
-    MAX_LOCAL_QUERIES = _localStorage.MAX_LOCAL_QUERIES;
+    removeDuplicatedQueries = _localStorage.removeDuplicatedQueries
+    defaultLocalSize = 5;
 
 
 describe('Local storage functions', function () {
@@ -49,7 +49,7 @@ describe('Local storage functions', function () {
 
     it('should create localStorage if not exists', function () {
         // WHEN
-        addQueryToLocalStorage(testStorageName, 'target');
+        addQueryToLocalStorage(testStorageName, 'target', defaultLocalSize);
 
         // THEN
         var queries = getSuggestionQueries(testStorageName);
@@ -58,10 +58,10 @@ describe('Local storage functions', function () {
 
     it('should not add query if already is in localStorage', function () {
         // GIVEN 
-        addQueryToLocalStorage(testStorageName, 'target');
+        addQueryToLocalStorage(testStorageName, 'target', defaultLocalSize);
 
         // WHEN 
-        addQueryToLocalStorage(testStorageName, 'target');
+        addQueryToLocalStorage(testStorageName, 'target', defaultLocalSize);
 
         // THEN
         var queries = getSuggestionQueries(testStorageName);
@@ -70,13 +70,13 @@ describe('Local storage functions', function () {
 
     it('should delete last query if localStorage full', function () {
         // GIVEN
-        addQueryToLocalStorage(testStorageName, 'last');
-        for (var i = 0; i < MAX_LOCAL_QUERIES - 1; i++) {
-            addQueryToLocalStorage(testStorageName, i);
+        addQueryToLocalStorage(testStorageName, 'last', defaultLocalSize);
+        for (var i = 0; i < defaultLocalSize - 1; i++) {
+            addQueryToLocalStorage(testStorageName, i, defaultLocalSize);
         }
 
         // WHEN
-        addQueryToLocalStorage(testStorageName, i);
+        addQueryToLocalStorage(testStorageName, i, defaultLocalSize);
 
         // THEN
         var queries = getSuggestionQueries(testStorageName);
@@ -85,10 +85,10 @@ describe('Local storage functions', function () {
 
     it('should add query if localStorage exist and not full', function () {
         // GIVEN 
-        addQueryToLocalStorage(testStorageName, 'first');
+        addQueryToLocalStorage(testStorageName, 'first', defaultLocalSize);
 
         // WHEN
-        addQueryToLocalStorage(testStorageName, 'second');
+        addQueryToLocalStorage(testStorageName, 'second', defaultLocalSize);
 
         // THEN
         var queries = getSuggestionQueries(testStorageName);
@@ -106,8 +106,8 @@ describe('Local storage functions', function () {
 
     it('should returne formated queries', function () {
         // GIVEN
-        addQueryToLocalStorage(testStorageName, { target: 'first' });
-        addQueryToLocalStorage(testStorageName, { target: '[a]bo{b}ora' }); //special characters test
+        addQueryToLocalStorage(testStorageName, { target: 'first' }, defaultLocalSize);
+        addQueryToLocalStorage(testStorageName, { target: '[a]bo{b}ora' }, defaultLocalSize); //special characters test
 
         // WHEN
         var queries = getQueriesFromLocalStorage(testStorageName, { target: '[a]bo{b}o' }, 'target');
@@ -118,7 +118,7 @@ describe('Local storage functions', function () {
 
     it('should return matched queries with bold propety in matched characters', function () {
         // GIVEN 
-        addQueryToLocalStorage(testStorageName, {target: "testing"});
+        addQueryToLocalStorage(testStorageName, {target: "testing"}, defaultLocalSize);
 
         // WHEN 
         var queries = getQueriesFromLocalStorage(testStorageName, { target: "test" }, 'target');

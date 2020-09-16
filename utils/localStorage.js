@@ -7,7 +7,6 @@
 }(typeof self !== 'undefined' ? self : this, function (_string) {
     var escapeSpecialChars = _string.escapeSpecialChars,
         removeBoldElement = _string.removeBoldElement;
-    var MAX_LOCAL_QUERIES = 5;
 
     function saveSuggestionQueries(storageName, queries) {
         queries = removeBoldElement(JSON.stringify(queries));
@@ -31,7 +30,7 @@
         saveSuggestionQueries(storageName, filteredQueries);
     }
 
-    function addQueryToLocalStorage(storageName, query) {
+    function addQueryToLocalStorage(storageName, query, localSize) {
         delete query.isQueryHistory;
         var queries = getSuggestionQueries(storageName);
         if (queries === null) {
@@ -40,7 +39,7 @@
             queries = queries.filter(function (element) {
                 return JSON.stringify(element) !== removeBoldElement(JSON.stringify(query));
             })
-            if (queries.length >= MAX_LOCAL_QUERIES) {
+            if (queries.length >= localSize) {
                 queries.shift();
             }
             queries.push(query);
@@ -93,7 +92,6 @@
         removeQueryFromLocalStorage: removeQueryFromLocalStorage,
         addQueryToLocalStorage: addQueryToLocalStorage,
         getQueriesFromLocalStorage: getQueriesFromLocalStorage,
-        removeDuplicatedQueries: removeDuplicatedQueries,
-        MAX_LOCAL_QUERIES: MAX_LOCAL_QUERIES
+        removeDuplicatedQueries: removeDuplicatedQueries
     };
 }));

@@ -80,6 +80,7 @@
             onSelect: function (e, term, item) { },
             queryHistoryStorageName: null,
             formSelector: null,
+            localSize: 5,
             buildTerm: function (term) { return term },
             target: null
         };
@@ -155,7 +156,7 @@
                     var v = this.getAttribute('data-val');
                     var index = this.getAttribute('data-index');
                     if (o.queryHistoryStorageName) {
-                        addQueryToLocalStorage(o.queryHistoryStorageName, rawData[index]);
+                        addQueryToLocalStorage(o.queryHistoryStorageName, rawData[index], o.localSize);
                     }
                     that.value = v;
                     o.onSelect(e, v, this);
@@ -212,7 +213,7 @@
 
             if (document.querySelector(o.formSelector) && o.queryHistoryStorageName) {
                 addEvent(document.querySelector(o.formSelector), 'submit', function (e) {
-                    addQueryToLocalStorage(o.queryHistoryStorageName, o.buildTerm(that.value.toLocaleLowerCase()));
+                    addQueryToLocalStorage(o.queryHistoryStorageName, o.buildTerm(that.value.toLocaleLowerCase()), o.localSize);
                 });
             }
 
@@ -246,7 +247,7 @@
                     if (sel && that.sc.style.display != 'none') {
                         if (o.queryHistoryStorageName) {
                             var index = sel.getAttribute('data-index');
-                            addQueryToLocalStorage(o.queryHistoryStorageName, rawData[index]);
+                            addQueryToLocalStorage(o.queryHistoryStorageName, rawData[index], o.localSize);
                         }
                         o.onSelect(e, sel.getAttribute('data-val'), sel);
                         setTimeout(function () { that.sc.style.display = 'none'; }, 20);
