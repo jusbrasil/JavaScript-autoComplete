@@ -57,7 +57,7 @@
                     regex = new RegExp('^'+escapeSpecialChars(term[target]));
                     match = regex.exec(query[target]);
                     if (match !== null) {
-                        query[target] = query[target].replace(match[0], '<b>'.concat(match[0], '</b>'))
+                        query[target] = query[target].replace(match[0], '<span>'.concat(match[0], '</span>'))
                         query.isQueryHistory = true;
                         return query
                     }
