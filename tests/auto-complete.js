@@ -190,8 +190,8 @@ describe('Autocomplete Instance', function () {
 
         // THEN
         expect(removeSpaces(suggestions.innerHTML)).toBe(removeSpaces(`
-        <div class="autocomplete-suggestion" data-val="suggestion 1" data-index="0"><b>sugg</b>estion 1</div>
-        <div class="autocomplete-suggestion" data-val="suggestion 2" data-index="1"><b>sugg</b>estion 2</div>
+        <div class="autocomplete-suggestion" data-val="suggestion 1" data-index="0"><span>sugg</span>estion 1</div>
+        <div class="autocomplete-suggestion" data-val="suggestion 2" data-index="1"><span>sugg</span>estion 2</div>
         `));
 
     });
@@ -202,7 +202,7 @@ describe('Autocomplete Instance', function () {
             delay: 0,
             selector: '.Test',
             source: function (a, callback) {
-                callback([{ target: '<b>sugg</b>estion 1' }, { target: '<b>sugg</b>estion 2' }]);
+                callback([{ target: '<span>sugg</span>estion 1' }, { target: '<span>sugg</span>estion 2' }]);
             },
             queryHistoryStorageName: 'localTest',
             renderItem: renderItem,
@@ -222,17 +222,17 @@ describe('Autocomplete Instance', function () {
 
         // THEN
         expect(removeSpaces(suggestions.innerHTML)).toBe(removeSpaces(`
-        <div class="autocomplete-suggestion" data-val="<b>sugg</b>estion local 2" data-index="0">
-            <b>sugg</b>estion local 2
+        <div class="autocomplete-suggestion" data-val="<span>sugg</span>estion local 2" data-index="0">
+            <span>sugg</span>estion local 2
         </div>
-        <div class="autocomplete-suggestion" data-val="<b>sugg</b>estion local 1" data-index="1">
-            <b>sugg</b>estion local 1
+        <div class="autocomplete-suggestion" data-val="<span>sugg</span>estion local 1" data-index="1">
+            <span>sugg</span>estion local 1
         </div>
-        <div class="autocomplete-suggestion" data-val="<b>sugg</b>estion 1" data-index="2">
-            <b>sugg</b>estion 1
+        <div class="autocomplete-suggestion" data-val="<span>sugg</span>estion 1" data-index="2">
+            <span>sugg</span>estion 1
         </div>
-        <div class="autocomplete-suggestion" data-val="<b>sugg</b>estion 2" data-index="3">
-            <b>sugg</b>estion 2
+        <div class="autocomplete-suggestion" data-val="<span>sugg</span>estion 2" data-index="3">
+            <span>sugg</span>estion 2
         </div>
         `));
     })
