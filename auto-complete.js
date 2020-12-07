@@ -75,7 +75,7 @@
                 // escape special characters
                 search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
                 var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-                return '<div class="autocomplete-suggestion" data-val="' + item + '" data-index="' + suggestionIndex + '">' + item.replace(re, "<b>$1</b>") + '</div>';
+                return '<div class="autocomplete-suggestion" data-val="' + item + '" data-index="' + suggestionIndex + '">' + item.replace(re, "<span>$1</span>") + '</div>';
             },
             onSelect: function (e, term, item) { },
             queryHistoryStorageName: null,

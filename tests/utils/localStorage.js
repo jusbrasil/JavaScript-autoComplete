@@ -104,7 +104,7 @@ describe('Local storage functions', function () {
         expect(queries).toEqual([]);
     })
 
-    it('should returne formated queries', function () {
+    it('should return formated queries', function () {
         // GIVEN
         addQueryToLocalStorage(testStorageName, { target: 'first' }, defaultLocalSize);
         addQueryToLocalStorage(testStorageName, { target: '[a]bo{b}ora' }, defaultLocalSize); //special characters test
@@ -113,7 +113,7 @@ describe('Local storage functions', function () {
         var queries = getQueriesFromLocalStorage(testStorageName, { target: '[a]bo{b}o' }, 'target');
 
         // THEN
-        expect(queries).toMatchObject([{ target: '<b>[a]bo{b}o</b>ra', isQueryHistory: true }])
+        expect(queries).toMatchObject([{ target: '<span>[a]bo{b}o</span>ra', isQueryHistory: true }])
     });
 
     it('should return matched queries with bold propety in matched characters', function () {
@@ -124,7 +124,7 @@ describe('Local storage functions', function () {
         var queries = getQueriesFromLocalStorage(testStorageName, { target: "test" }, 'target');
 
         // THEN
-        expect(queries).toMatchObject([{target:'<b>test</b>ing',isQueryHistory:true}]);
+        expect(queries).toMatchObject([{target:'<span>test</span>ing',isQueryHistory:true}]);
     });
 
     it('should remove queries with same title', function () {
