@@ -1,6 +1,6 @@
 var _string = require('../../utils/string'),
     escapeSpecialChars = _string.escapeSpecialChars,
-    removeBoldElement = _string.removeBoldElement;
+    removeHtlmTags = _string.removeHtlmTags;
 
 describe('String related functions', function () {
     it('should escape with \ all special chars',function(){
@@ -20,8 +20,8 @@ describe('String related functions', function () {
         var string2 = '<span><span>testing';
 
         // WHEN
-        string1 = removeBoldElement(string1);
-        string2 = removeBoldElement(string2);
+        string1 = removeHtlmTags(string1);
+        string2 = removeHtlmTags(string2);
 
 
         // THEN

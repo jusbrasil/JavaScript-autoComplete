@@ -2,7 +2,7 @@ function escapeSpecialChars(string) {
     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
-function removeBoldElement(string) {
+function removeHtlmTags(string) {
     return string.replace(/<\/?[A-z]*>/g, '');
 }
 
@@ -16,6 +16,6 @@ function removeBoldElement(string) {
 
     return {
         escapeSpecialChars: escapeSpecialChars,
-        removeBoldElement: removeBoldElement
+        removeHtlmTags: removeHtlmTags
     };
 }));
