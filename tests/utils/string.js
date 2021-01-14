@@ -14,14 +14,19 @@ describe('String related functions', function () {
         expect(string).toEqual('\\[something\\]\\*\\/\\?\\^\\+\\(\\)\\|\\{\\}\\-');
     });
 
-    it('should remove bold mark from string',function(){
+    it('should remove any tag mark from string',function(){
         // GIVEN
-        var string = '<b>test</b>ing';
+        var string1 = '<b>test</b>ing';
+        var string2 = '<span><span>testing';
 
         // WHEN
-        string = removeBoldElement(string);
+        string1 = removeBoldElement(string1);
+        string2 = removeBoldElement(string2);
+
 
         // THEN
-        expect(string).toEqual('testing');
+        expect(string1).toEqual('testing');
+        expect(string2).toEqual('testing');
+
     })
 })

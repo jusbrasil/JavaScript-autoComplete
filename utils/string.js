@@ -3,7 +3,7 @@ function escapeSpecialChars(string) {
 }
 
 function removeBoldElement(string) {
-    return string.replace(/<\/?b>/g, '');
+    return string.replace(/<\/?[A-z]*>/g, '');
 }
 
 (function (root, factory) {
