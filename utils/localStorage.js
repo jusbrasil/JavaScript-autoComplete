@@ -6,10 +6,10 @@
     }
 }(typeof self !== 'undefined' ? self : this, function (_string) {
     var escapeSpecialChars = _string.escapeSpecialChars,
-        removeBoldElement = _string.removeBoldElement;
+        removeHtlmTags = _string.removeHtlmTags;
 
     function saveSuggestionQueries(storageName, queries) {
-        queries = removeBoldElement(JSON.stringify(queries));
+        queries = removeHtlmTags(JSON.stringify(queries));
         window.localStorage.setItem(storageName, queries);
     }
 
@@ -25,7 +25,7 @@
         delete term.isQueryHistory;
         var queries = getSuggestionQueries(storageName);
         var filteredQueries = queries.filter(function (query) {
-            return JSON.stringify(query) !== removeBoldElement(JSON.stringify(term));
+            return JSON.stringify(query) !== removeHtlmTags(JSON.stringify(term));
         });
         saveSuggestionQueries(storageName, filteredQueries);
     }
@@ -37,7 +37,7 @@
             saveSuggestionQueries(storageName, [query]);
         } else {
             queries = queries.filter(function (element) {
-                return JSON.stringify(element) !== removeBoldElement(JSON.stringify(query));
+                return JSON.stringify(element) !== removeHtlmTags(JSON.stringify(query));
             })
             if (queries.length >= localSize) {
                 queries.shift();
@@ -77,7 +77,7 @@
         for (var i = 0; i < queries.length; i++) {
             var isLocal = queries[i].isQueryHistory;
             delete queries[i].isQueryHistory;
-            var text = removeBoldElement(JSON.stringify(queries[i]))
+            var text = removeHtlmTags(JSON.stringify(queries[i]))
             if (titles.indexOf(text) === -1) {
                 titles.push(text);
                 queries[i].isQueryHistory = isLocal;
