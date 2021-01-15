@@ -1,6 +1,6 @@
 {
   "name": "javascript-autocomplete",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "An extremely lightweight and powerful vanilla JavaScript completion suggester.",
   "main": "auto-complete.js",
   "scripts": {
